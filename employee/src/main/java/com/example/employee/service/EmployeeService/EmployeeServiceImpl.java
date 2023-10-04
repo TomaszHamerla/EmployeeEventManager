@@ -23,7 +23,7 @@ public class EmployeeServiceImpl implements EmployeeService, EmployeeValidations
 
     @Override
     public EmployeeDto createEmployee(Employee employee) {
-        validEmail(employee.getEmail());
+        validEmployee(employee);
         Employee saveEmployee = employeeRepository.save(employee);
         return getEmployeeDto(saveEmployee);
     }
@@ -97,10 +97,13 @@ public class EmployeeServiceImpl implements EmployeeService, EmployeeValidations
 
     }
 
-    private void validEmail(String email) {
-        if (employeeRepository.existsByEmail(email)) {
+    private void validEmployee(Employee employee) {
+        if (employeeRepository.existsByEmail(employee.getEmail())) {
             throw new EmployeeException(EmployeeError.EMPLOYEE_EMAIL_ALREADY_EXISTS);
         }
+       if (employee.getPosition()==null){
+           throw new EmployeeException(EmployeeError.EMPLOYEE_POSITION_CAN_NOT_BE_BLANK);
+       }
     }
 
     @Override

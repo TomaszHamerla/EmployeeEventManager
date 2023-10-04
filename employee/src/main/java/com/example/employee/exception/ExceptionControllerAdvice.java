@@ -22,6 +22,8 @@ public class ExceptionControllerAdvice {
             status = HttpStatus.METHOD_NOT_ALLOWED;
         } else if (EmployeeError.EMPLOYEE_EMAIL_ALREADY_EXISTS.equals(e.getEmployeeError())) {
             status = HttpStatus.BAD_REQUEST;
+        } else if (EmployeeError.EMPLOYEE_POSITION_CAN_NOT_BE_BLANK.equals(e.getEmployeeError())) {
+            status=HttpStatus.BAD_REQUEST;
         }
         return ResponseEntity.status(status).body(e.getEmployeeError());
     }

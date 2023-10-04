@@ -29,7 +29,6 @@ public class Employee {
     private String email;
 
     private LocalDateTime hireDate = LocalDateTime.now();
-
     @Enumerated(EnumType.STRING)
     private Position position;                        //  EMPLOYEE,MANAGER
     @Enumerated(EnumType.STRING)

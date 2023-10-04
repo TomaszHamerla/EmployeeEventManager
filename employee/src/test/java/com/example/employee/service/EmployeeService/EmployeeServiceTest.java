@@ -72,6 +72,18 @@ class EmployeeServiceTest {
         verify(employeeRepository,never()).save(employee);
     }
     @Test
+    void createEmployee_withStatusNull_throwsEmployeeException_EMPLOYEE_POSITION_CAN_NOT_BE_BLANK(){
+        //given
+        Employee employee = getEmployee();
+        employee.setPosition(null);
+
+        //when
+        Exception exception = assertThrows(EmployeeException.class, (() -> employeeServiceImpl.createEmployee(employee)));
+
+        //then
+        assertThat(exception).hasMessage("Can not create employee with blank position !");
+    }
+    @Test
     void createEmployee_withCorrectData(){
         //given
         Employee employee = getEmployee();

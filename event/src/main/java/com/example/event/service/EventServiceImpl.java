@@ -49,10 +49,18 @@ public class EventServiceImpl implements EventService {
 
         Event event = getEvent(name);
         Employee employee = employeeServiceClient.getEmployee(employeeId);
+        validEmployee(employee.getStatus());
         event.getEmployeeMembers().add(new EmployeeMember(employee.getEmail()));
         eventRepository.save(event);
         return employee;
     }
+
+    private void validEmployee(String status) {
+        if ("inactive".equals(status)){
+            throw new EventException(EventError.EMPLOYEE_IS_NOT_ACTIVE);
+        }
+    }
+
     private Event getEvent(String name) {
         return eventRepository.readByName(name)
                 .orElseThrow(() -> new EventException(EventError.EVENT_NOT_FOUND_EXCEPTION));
