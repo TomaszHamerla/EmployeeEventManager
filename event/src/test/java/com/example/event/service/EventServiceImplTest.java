@@ -1,10 +1,11 @@
 package com.example.event.service;
 
 import com.example.event.exception.EventException;
+import com.example.event.model.EmployeeMember;
 import com.example.event.model.Event;
+import com.example.event.model.dto.Employee;
 import com.example.event.repository.EmployeeServiceClient;
 import com.example.event.repository.EventRepository;
-import org.apache.el.stream.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -12,6 +13,8 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -68,6 +71,51 @@ class EventServiceImplTest {
         //then
         assertNotNull(createdEvent);
         assertEquals(event,createdEvent);
+    }
+    @Test
+    void readEventByName_withNameNotFound_throwsEventExceptionEVENT_NOT_FOUND_EXCEPTION(){
+        //given
+        Event event = getEvent();
+        when(eventRepository.readByName(anyString())).thenReturn(Optional.empty());
+
+        //when
+        Exception exception = assertThrows(EventException.class, () -> eventService.readEventByName(event.getName()));
+
+        //then
+        assertThat(exception).hasMessage("Event with given name not found !");
+    }
+    @Test
+    void readEventByName_withNameFound_returnsEventObj(){
+        //given
+        Event event = getEvent();
+        when(eventRepository.readByName(anyString())).thenReturn(Optional.of(event));
+
+        //when
+        Event eventFromDb = eventService.readEventByName(event.getName());
+
+        //then
+        assertNotNull(eventFromDb);
+    }
+    //FIXME
+    @Test
+    void readEmployees_withEventNameFound_returnsListOfEmployees(){
+        //given
+        Event event = getEvent();
+        when(eventRepository.readByName(any())).thenReturn(Optional.of(event));
+        Employee employee = new Employee();
+        employee.setFirstName("joe");
+        employee.setLastName("doe");
+        employee.setEmail("example@gmail.com");
+        List<Employee>employees=List.of(employee);
+        event.getEmployeeMembers().add(new EmployeeMember("example@gmail.com"));
+        when(employeeServiceClient.getEmployeesByEmails(any())).thenReturn(employees);
+
+        //when
+        List<Employee> employeesFromEvent = eventService.readEmployees(event.getName());
+
+        //then
+        assertEquals(employee.getEmail(),employees.get(0));
+
     }
 
     private Event getEvent() {
