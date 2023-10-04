@@ -28,6 +28,12 @@ public class EmployeeServiceImpl implements EmployeeService, EmployeeValidations
         return getEmployeeDto(saveEmployee);
     }
 
+    @Override
+    public List<EmployeeDto> readEmployeesByEmails(List<String> emails) {
+      return  employeeRepository.findByEmailIn(emails)
+                .stream().map(employee -> getEmployeeDto(employee))
+                .collect(Collectors.toList());
+    }
 
     @Override
     public EmployeeDto readEmployee(Long employeeID) {

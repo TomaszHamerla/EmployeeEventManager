@@ -17,6 +17,15 @@ public class ExceptionControllerAdvice {
         }
         else if (EventError.EMPLOYEE_IS_NOT_ACTIVE.equals(e.getEventError())){
             status=HttpStatus.METHOD_NOT_ALLOWED;
+        } else if (EventError.EVENT_DATE_CONFLICT.equals(e.getEventError())) {
+            status=HttpStatus.BAD_REQUEST;
+        } else if (EventError.EVENT_FULL_PARTICIPANTS_NUMBER.equals(e.getEventError())) {
+            status=HttpStatus.BAD_REQUEST;
+        }
+        else if(EventError.EVENT_NOT_AVAILABLE_STATUS.equals(e.getEventError())){
+            status=HttpStatus.NOT_FOUND;
+        }else if (EventError.EVENT_DUPLICATE_NAME.equals(e.getEventError())){
+            status=HttpStatus.CONFLICT;
         }
         return ResponseEntity.status(status).body(e.getEventError());
     }

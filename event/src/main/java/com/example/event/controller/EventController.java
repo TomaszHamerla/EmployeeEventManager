@@ -29,8 +29,17 @@ public class EventController {
     ResponseEntity<Event>readEvent(@PathVariable String eventName){
         return ResponseEntity.ok(eventService.readEventByName(eventName));
     }
+    @GetMapping("/{eventName}/employees")
+    ResponseEntity<List<Employee>>readEmployees(@PathVariable String eventName){
+        return ResponseEntity.ok(eventService.readEmployees(eventName));
+    }
     @PostMapping("/{eventName}/employees/{employeeId}")
     ResponseEntity<Employee>addEmployee(@PathVariable String eventName,@PathVariable Long employeeId){
         return ResponseEntity.ok(eventService.addEmployee(eventName,employeeId));
+    }
+    @DeleteMapping("/{eventName}")
+    ResponseEntity<?>deactivationEvent(@PathVariable String eventName){
+        eventService.deactivationEvent(eventName);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -32,6 +32,10 @@ public class EmployeeController {
     ResponseEntity<EmployeeDto>readEmployee(@PathVariable Long employeeId){
         return ResponseEntity.ok(employeeService.readEmployee(employeeId));
     }
+    @PostMapping("/{emails}")
+    ResponseEntity<List<EmployeeDto>>readEmployeesByEmails(@PathVariable List<String>emails){
+        return ResponseEntity.ok(employeeService.readEmployeesByEmails(emails));
+    }
     @PatchMapping("/{employeeId}")
     ResponseEntity<EmployeeDto>updateEmployee(@PathVariable Long employeeId,@RequestBody Employee employee){
         return ResponseEntity.ok(employeeService.updateEmployee(employeeId,employee));

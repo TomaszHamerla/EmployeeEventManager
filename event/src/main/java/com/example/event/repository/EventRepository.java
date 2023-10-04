@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface EventRepository extends MongoRepository<Event,String> {
     Optional<Event> readByName(String name);
+    boolean existsByName(String name);
 }
