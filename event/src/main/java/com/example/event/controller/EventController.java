@@ -42,4 +42,9 @@ public class EventController {
         eventService.deactivationEvent(eventName);
         return ResponseEntity.noContent().build();
     }
+    @DeleteMapping("/{eventName}/employees")
+    ResponseEntity<?>removeEmployee(@PathVariable String eventName,@RequestParam String email){
+        eventService.removeEmployee(eventName,email);
+        return ResponseEntity.noContent().build();
+    }
 }

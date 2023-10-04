@@ -56,7 +56,7 @@ public class EventServiceImpl implements EventService {
         Employee employee = employeeServiceClient.getEmployee(employeeId);
         validEmployee(employee.getStatus());
         event.getEmployeeMembers().add(new EmployeeMember(employee.getEmail()));
-        event.setParticipantsNumber(event.getParticipantsNumber()+1);
+        event.setParticipantsNumber(event.getParticipantsNumber() + 1);
         checkParticipantsNumber(event);
         eventRepository.save(event);
         return employee;
@@ -70,27 +70,37 @@ public class EventServiceImpl implements EventService {
         eventRepository.save(event);
     }
 
+    @Override
+    public void removeEmployee(String name, String email) {
+        Event event = getEvent(name);
+        event.getEmployeeMembers().removeIf(employeeMember -> employeeMember.getEmail().equals(email));
+        event.setParticipantsNumber(event.getParticipantsNumber()-1);
+        eventRepository.save(event);
+    }
+
     private void validEvent(Event event) {
-        if (event.getStartDate().isAfter(event.getEndDate())){
+        if (event.getStartDate().isAfter(event.getEndDate())) {
             throw new EventException(EventError.EVENT_DATE_CONFLICT);
         }
-        if (eventRepository.existsByName(event.getName())){
+        if (eventRepository.existsByName(event.getName())) {
             throw new EventException(EventError.EVENT_DUPLICATE_NAME);
         }
     }
+
     private void checkEventStatus(EventStatus status) {
-        if (EventStatus.CANCEL.equals(status)){
+        if (EventStatus.CANCEL.equals(status)) {
             throw new EventException(EventError.EVENT_NOT_AVAILABLE_STATUS);
         }
     }
 
-    private void checkParticipantsNumber(Event event){
-        if (event.getParticipantsNumber()==5){
+    private void checkParticipantsNumber(Event event) {
+        if (event.getParticipantsNumber() == 5) {
             event.setStatus(EventStatus.COMPLETED);
         }
     }
-    private void checkParticipantsNumber(int number){
-        if (number ==5){
+
+    private void checkParticipantsNumber(int number) {
+        if (number == 5) {
             throw new EventException(EventError.EVENT_FULL_PARTICIPANTS_NUMBER);
         }
     }
