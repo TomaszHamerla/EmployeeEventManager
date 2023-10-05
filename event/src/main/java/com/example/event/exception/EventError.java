@@ -9,7 +9,7 @@ public enum EventError {
     EVENT_FULL_PARTICIPANTS_NUMBER("Can not add another employee to this event because limit is full !"),
     EVENT_NOT_AVAILABLE_STATUS("Event with given name has not active status !"),
     EVENT_DUPLICATE_NAME("Can not create event with this name !"),
-    EMPLOYEE_IS_NOT_ACTIVE("Employee with given id is not avitve !");
+    EMPLOYEE_IS_NOT_ACTIVE("Employee with given id is not active !");
     private String message;
 
     EventError(String message) {

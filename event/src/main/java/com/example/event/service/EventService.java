@@ -12,6 +12,7 @@ public interface EventService {
     Event readEventByName(String name);
     List<Employee>readEmployees(String name);
     Employee addEmployee(String name,Long employeeId);
+    void finishEventEnrollment(String eventName);
     void removeEmployee(String name,String email);
     void deactivationEvent(String eventName);
 }

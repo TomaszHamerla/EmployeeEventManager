@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="notification" />
         <module name="employee" />
         <module name="event" />
         <module name="eureka" />
@@ -20,6 +21,7 @@
       <module name="eureka" options="-parameters" />
       <module name="event" options="-parameters" />
       <module name="gateway" options="-parameters" />
+      <module name="notification" options="-parameters" />
     </option>
   </component>
 </project>

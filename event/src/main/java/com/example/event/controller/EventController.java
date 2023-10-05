@@ -37,6 +37,11 @@ public class EventController {
     ResponseEntity<Employee>addEmployee(@PathVariable String eventName,@PathVariable Long employeeId){
         return ResponseEntity.ok(eventService.addEmployee(eventName,employeeId));
     }
+    @PatchMapping("/{eventName}")
+    ResponseEntity<?>finishEventEnrollment(@PathVariable String eventName){
+        eventService.finishEventEnrollment(eventName);
+        return ResponseEntity.noContent().build();
+    }
     @DeleteMapping("/{eventName}")
     ResponseEntity<?>deactivationEvent(@PathVariable String eventName){
         eventService.deactivationEvent(eventName);
