@@ -7,10 +7,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class NotificationService {
+public class RabbitMqListener {
+    private final EmailSender emailSender;
+
+    public RabbitMqListener(EmailSender emailSender) {
+        this.emailSender = emailSender;
+    }
 
     @RabbitListener(queues = "test")
    public void getNotification(Notification notification){
-      log.info(notification.toString());
+      emailSender.sendEmail(notification);
     }
 }
