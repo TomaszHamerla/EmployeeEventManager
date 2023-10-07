@@ -18,7 +18,11 @@ Email Notifications - The application allows for sending email notifications to 
 
 Multi-Database Data Handling - The project uses two different databases, PostgreSQL and MongoDB, to store data about employees, departments, and events. This allows for optimizing data storage based on their characteristics.
 
-In addition, the application has been thoroughly tested, including testing in Postman for API endpoints and the development of unit tests to ensure robustness and reliability.
+In addition, the application has been extensively tested, including API endpoint testing in Postman and the implementation of unit tests to ensure its robustness and reliability.
 
 ![image](https://github.com/TomaszHamerla/EmployeeEventManager/assets/137602795/2806fefa-a8e6-4a6c-9641-51b864952a70)
+![image](https://github.com/TomaszHamerla/EmployeeEventManager/assets/137602795/f1058b51-f93d-4c66-b5f2-1107816057fa)
+![image](https://github.com/TomaszHamerla/EmployeeEventManager/assets/137602795/46700667-283e-48d7-bb9c-f5a888ae39ab)
+
+
 
