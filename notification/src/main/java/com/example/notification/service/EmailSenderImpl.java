@@ -31,6 +31,10 @@ public class EmailSenderImpl implements EmailSender {
         });
     }
 
+     @Override
+    public void sendEmail(EmailDto emailDto) throws MessagingException {
+        sendEmail(emailDto.getTo(),emailDto.getTitle(),emailDto.getContent());
+    }
     private String getContent(Notification notification) {
         StringBuilder content = new StringBuilder();
         content.append("Event ");
@@ -38,11 +42,6 @@ public class EmailSenderImpl implements EmailSender {
         content.append(" on  "+ notification.getStartDate().toLocalDate());
         content.append(" at "+ notification.getStartDate().getHour());
         return content.toString();
-    }
-
-    @Override
-    public void sendEmail(EmailDto emailDto) throws MessagingException {
-        sendEmail(emailDto.getTo(),emailDto.getTitle(),emailDto.getContent());
     }
     private void sendEmail(String to,String title,String content) throws MessagingException {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
