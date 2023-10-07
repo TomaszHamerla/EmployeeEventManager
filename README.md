@@ -25,8 +25,8 @@ In addition, the application has been extensively tested, including API endpoint
 ![image](https://github.com/TomaszHamerla/EmployeeEventManager/assets/137602795/9e196401-9c18-4985-91e5-de9625a4b6af)
 ![image](https://github.com/TomaszHamerla/EmployeeEventManager/assets/137602795/8152f976-4bd3-419e-b747-2eb7fcb9bce4)
 ![image](https://github.com/TomaszHamerla/EmployeeEventManager/assets/137602795/89532b6a-cefb-4621-b611-8c831b07bc3d)
-![image](https://github.com/TomaszHamerla/EmployeeEventManager/assets/137602795/f1058b51-f93d-4c66-b5f2-1107816057fa)
 ![image](https://github.com/TomaszHamerla/EmployeeEventManager/assets/137602795/46700667-283e-48d7-bb9c-f5a888ae39ab)
+![image](https://github.com/TomaszHamerla/EmployeeEventManager/assets/137602795/f1058b51-f93d-4c66-b5f2-1107816057fa)
 ![image](https://github.com/TomaszHamerla/EmployeeEventManager/assets/137602795/2806fefa-a8e6-4a6c-9641-51b864952a70)
 
 
